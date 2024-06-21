@@ -1,0 +1,80 @@
+import java.util.HashMap;
+
+
+public class MainTests {
+    public static void main(String[] args) {
+        System.out.println(/* FunctionName */);
+    }
+
+    //Shuffle String
+    public static String restoreString(String s, int[] indices) {
+        HashMap<Integer, Character> hashmp = new HashMap<Integer, Character>();
+        char[] strArr = new char[s.length()];
+        for (int i = 0; i < indices.length; i++) {
+            hashmp.put(indices[i], s.charAt(i));
+        }
+        for (int i = 0; i < indices.length; i++) {
+            strArr[i] = hashmp.get(i);
+        }
+
+        return new String(strArr);
+    }
+
+    //Palindrome number
+    public static boolean isPalindrome(int x) {
+        if(x < 0) return false;
+        String xString = x + "";
+        String[] xStringArr = null;
+        xStringArr = xString.split("");
+        int indexFromEnd = xStringArr.length - 1;
+        System.out.print(xStringArr.length / 2);
+        for(int i = 0; i < xStringArr.length / 2; i++, indexFromEnd--)
+        {
+            if(!xStringArr[i].equals(xStringArr[indexFromEnd]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Number of Steps to Reduce a Number to Zero
+    public static int numberOfSteps(int num) {
+        int counter = 0;
+        while(num != 0)
+        {
+            if(num % 2 == 0) {num /= 2; counter++;}
+            else {num--; counter++;}
+        }
+        return counter;
+    }
+
+    //Check If Two String Arrays are Equivalent
+    public static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        String str1 = String.join("", word1);
+        String str2 = String.join("", word2);
+        return str1.equals(str2);
+    }
+
+    //Sum of All Odd Length Subarrays
+    public static int sumOddLengthSubarrays(int[] arr) {
+        int arrLength = arr.length;
+        int beginning = 0, end = arrLength - 1, sum = 0, range = arrLength;
+
+        for( ; range > 0; )
+        {
+            for( ; !(beginning > end); beginning++){
+                sum += arr[beginning];
+            }
+            if(end + 1 == arrLength){
+                range -= 2;
+                end = range - 1;
+                beginning = 0;
+            }else{
+                end++;
+                beginning = end - range + 1;
+            }
+        }
+        return sum;
+    }
+}
